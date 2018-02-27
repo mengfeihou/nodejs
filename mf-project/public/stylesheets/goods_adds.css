@@ -1,0 +1,34 @@
+html{
+	height:100%;
+}
+body{
+	min-width:773px;
+	/*width:100%;*/
+	overflow:auto;
+	/*width:100%;*/
+	/*height:100%;*/
+	/*overflow:hidden;*/
+	/*background:red;*/
+	background:url("/imgs/goods_add/body.jpg");
+}
+
+nav{
+	
+	background:#efefef;
+	padding:0 10px;
+	height:40px;
+	
+}
+nav>ul{
+	display:flex;
+	font-size:14px;
+}
+nav>ul>li{
+	padding:0 10px;
+	height:40px;
+	line-height:40px;
+}
+nav .active{
+	background:#FFFFFF;
+}
+

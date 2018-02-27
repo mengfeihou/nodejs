@@ -10,7 +10,10 @@ router.get('/', function(req, res, next) {
 router.get('/goods_add',function(req,res){
 	res.render('goods_add',{});
 })
-
+//商品添加详细信息页面 get
+router.get('/goods_adds',function(req,res){
+	res.render('goods_adds',{});
+})
 
 
 //登录页面post
