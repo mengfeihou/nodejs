@@ -64,5 +64,6 @@ section>.main>form>input{
 	margin-bottom:5px;
 }
 section>.main>form>input:nth-child(3){
-	text-align:center;
+	display: flex;
+	justify-content:center;
 }
