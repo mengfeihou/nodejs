@@ -1,0 +1,52 @@
+html{
+	height:100%;
+}
+body{
+	min-width:773px;
+	/*width:100%;*/
+	overflow:auto;
+	/*width:100%;*/
+	/*height:100%;*/
+	/*overflow:hidden;*/
+	/*background:red;*/
+	background:url("/imgs/goods_add/body.jpg");
+}
+
+nav{
+	background:#efefef;
+	padding:0 10px;
+	height:40px;
+}
+nav>span{
+	display:inline-block;
+}
+/**/nav>span:nth-child(1)>input{
+	width:104px;
+	height:23px;
+	cursor: text;
+}
+nav>span:nth-child(2){
+	padding: 5px 15px 5px;
+	margin: 2px 2px;
+	border: none;
+	background: #ff3f3f;
+	color: #FFF;
+	cursor: pointer;
+	border-radius: 3px;
+}
+
+main table{
+    /*border-spacing:0;*/
+	/*border-spacing:collapse;*/
+ 
+}
+main tr{
+	border-spacing:collapse;
+}
+main th{
+	line-height: 39px;
+	background: #f3f3f3;
+	white-space: nowrap;
+	border:5px solid #fff;
+	border-spacing:collapse;
+}

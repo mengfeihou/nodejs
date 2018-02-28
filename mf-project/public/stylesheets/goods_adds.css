@@ -32,3 +32,20 @@ nav .active{
 	background:#FFFFFF;
 }
 
+
+
+/*================================*/
+main form>div table{
+	border-spacing: 15px;
+}
+main form>div td{
+	width:400px;
+	font-size: 14px;
+	vertical-align: top;
+}
+main form>div td:nth-child(odd){
+	text-align: right;
+}
+main .button{
+	text-align: center;
+}

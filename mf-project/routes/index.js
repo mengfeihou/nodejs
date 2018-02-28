@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
 var UserModel = require("../model/UserModel");
+var GoodModel = require("../model/GoodModel"); 
+var multiparty = require('multiparty');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -14,7 +17,45 @@ router.get('/goods_add',function(req,res){
 router.get('/goods_adds',function(req,res){
 	res.render('goods_adds',{});
 })
+//商品列表  get
+router.get('/goods_list',function(req,res){
+	res.render('goods_list',{});
+})
 
+
+
+
+
+//商品添加详细信息页面action提交 post
+router.post('/api/goods_adds',function(req,res){
+	var Form = new multiparty.Form({
+		uploadDir: "./public/imgs/add_imgs"
+	});
+	Form.parse(req, function(err, body, files) {
+		var goods_name = body.goods_name[0];
+		var goods_number = body.goods_name[0];
+		var price = body.price[0] == "" ? 0 : body.price[0];
+		var count = body.count[0] == "" ? 0 : body.count[0];
+		var imgName = files.img[0].path;
+		imgName = imgName.substr(imgName.lastIndexOf("\\") + 1);
+		
+		console.log(goods_name,goods_number,price,count,imgName);
+		
+		var gm = new GoodModel();
+		gm.goods_name = goods_name;
+		gm.goods_number = goods_number;
+		gm.price = price;
+		gm.count = count;
+		gm.img = imgName;
+		gm.save(function(err){
+			if(!err){
+				res.send("商品保存成功");
+			}else{
+				res.send("商品保存失败");
+			}
+		});
+	});
+})
 
 //登录页面post
 router.post('/api/login',function(req,res){

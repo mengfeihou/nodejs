@@ -21,16 +21,16 @@
 		</ul>
 	</nav>
 	<main>
-  		<div>
-  			<form>
+  		<form id="frm" action="/api/goods_adds" method="post" enctype="multipart/form-data">
+  			<div>
   				<table>
 	  				<tr>
 	  					<td style="color: red">商品名称：</td>
-	  					<td><input type="text"/></td>
+	  					<td><input type="text" name="goods_name"/></td>
 	  				</tr>
 	  				<tr>
 	  					<td style="color: red">商品货号：</td>
-	  					<td><input type="text"/></td>
+	  					<td><input type="text" name="goods_number"/></td>
 	  				</tr>
 	  				<tr>
 	  					<td>商品分类：</td>
@@ -46,7 +46,7 @@
 	  				</tr>
 	  				<tr>
 	  					<td style="color: red">本店售价：</td>
-	  					<td><input type="text"/></td>
+	  					<td><input type="text" name="price"/></td>
 	  				</tr>
 	  				<tr>
 	  					<td>会员价格：</td>
@@ -62,7 +62,7 @@
 	  				</tr>
 	  				<tr>
 	  					<td style="color: red">虚拟销量：</td>
-	  					<td><input type="text"/></td>
+	  					<td><input type="text" name="count"/></td>
 	  				</tr>
 	  				<tr>
 	  					<td>>赠送消费积分数：</td>
@@ -86,16 +86,18 @@
 	  				</tr>
 	  				<tr>
 	  					<td  style="color: red">上传商品图片：</td>
-	  					<td><input type="file"/></td>
+	  					<td><input type="file" name="img"/></td>
 	  				</tr>
 	  				<tr>
 	  					<td>上传商品缩略图：</td>
 	  					<td><input type="text"/></td>
 	  				</tr>
 	  			</table>
-	  			<input type="button" value="确定"/>
-	  			<input type="reset" value="重置"/>
-	  		</form>
+	  		</div>
+	  	</form>
+	  	<div class="button">
+		  	<input type="button" onclick="addGoods()" value="确定"/>
+		  	<input type="reset" value="重置"/>
 	  	</div>
   	</main>
 	
@@ -103,6 +105,8 @@
 
 </body>
 	<script type="text/javascript">
-		
+		function addGoods(){
+			document.getElementById("frm").submit();
+		}
 	</script>
 </html>
