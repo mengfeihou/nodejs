@@ -36,17 +36,20 @@ nav>span:nth-child(2){
 }
 
 main table{
-    /*border-spacing:0;*/
-	/*border-spacing:collapse;*/
- 
-}
-main tr{
-	border-spacing:collapse;
+    border-spacing:0;
+	border-collapse:collapse;
+ 	width:100%;
 }
 main th{
 	line-height: 39px;
 	background: #f3f3f3;
 	white-space: nowrap;
-	border:5px solid #fff;
-	border-spacing:collapse;
+	border:1px solid #fff;
+	text-align: center;
+}
+main td{
+	line-height: 39px;
+	white-space: nowrap;
+	border:1px solid #fff;
+	text-align:center;
 }

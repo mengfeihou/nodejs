@@ -19,7 +19,9 @@ router.get('/goods_adds',function(req,res){
 })
 //商品列表  get
 router.get('/goods_list',function(req,res){
-	res.render('goods_list',{});
+	GoodModel.find({},function(err,docs){
+		res.render('goods_list',{list : docs});
+	})
 })
 
 

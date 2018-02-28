@@ -15,7 +15,7 @@
 	
 	<main>
 	
-		<table>
+		<table id="tab">
 			<tr>
 				<th>
 					<input type="checkbox" />
@@ -33,10 +33,38 @@
 				<th>虚拟销量</th>
 				<th>操作</th>
 			</tr>
+			<% for(var i=0; i <list.length;i++){ %>
+			<tr>
+				<td>
+					<input type="checkbox" />
+					<span><%= i %></span>
+				</td>
+				<td><%= list[i].goods_name %></td>
+				<td><%= list[i].goods_number %></td>
+				<td><%= list[i].price %></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td><%= list[i].count %></td>
+				<td></td>
+			</tr>
+			<% } %>
 		</table>
 	</main>
+	<!--<div>
+		<%= list.length %>
+	</div>-->
 </body>
 	<script type="text/javascript">
-	
+/*		$.ajax({
+			type:"get",
+			url:"/goods_list",
+			success : function(res){
+				console.log(res);
+			}
+		});*/
 	</script>
 </html>
