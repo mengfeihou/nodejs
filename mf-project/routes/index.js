@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var UserModel = require("../model/UserModel");
 var GoodModel = require("../model/GoodModel"); 
-var multiparty = require('multiparty');
+var multiparty = require('multiparty');//传文件解密的模块
 
 
 /* GET home page. */
@@ -27,7 +27,12 @@ router.get('/goods_list',function(req,res){
 
 //商品列表 post ajax接收、
 router.post('/api/goods_list',function(req,res){
-	GoodModel.find({},function(err,docs){
+	var search = req.body.search;
+	GoodModel.find({$or:[{goods_name:{$regex:search}},{goods_number:{$regex:search}}]},function(err,docs){
+//	GoodModel.find({goods_name:search},function(err,docs){
+//			res.send(docs);
+//		console.log(docs);
+//		res.render('goods_list',{list : docs});
 		res.send(docs);
 	})
 })
@@ -55,6 +60,7 @@ router.post('/api/goods_adds',function(req,res){
 		gm.price = price;
 		gm.count = count;
 		gm.img = imgName;
+		
 		gm.save(function(err){
 			if(!err){
 				res.send("商品保存成功");
