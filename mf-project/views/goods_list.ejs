@@ -14,7 +14,6 @@
 	</nav>
 	
 	<main>
-	
 		<table id="tab">
 			<tr>
 				<th>
@@ -54,11 +53,67 @@
 			<% } %>
 		</table>
 	</main>
+	<footer id="foot">
+		<!--<div class="txt"  id="txt" contenteditable="true">2</div> //div可编辑-->
+		<input class="txt" type="text"  id="txt" value="2"/>
+		<select class="num" id="numF">
+			<!--<option>1</option>-->
+		</select>
+	</footer>
 	<!--<div>
 		<%= list.length %>
 	</div>-->
 </body>
 	<script type="text/javascript">
+		window.onload = function (){
+//			console.log($("#tab").children().children("tr").length);
+			function changeTxt(){
+				var trs=$("#tab").children(0).children().length-1;
+				var txt = $("#txt").val();
+				var numF = $("#numF");
+				numF.html("");
+				var nums = Math.ceil(trs/txt);
+				for(var i = 0 ; i < nums ;i++){
+					var op = $("<option>");
+					op.html(i+1);
+					numF.append(op);
+				}
+			}
+			
+			$("#foot").on("keydown",$("#txt"),function(ee){
+				var e = ee || event;
+				if(e.keyCode == 13){
+					changeTxt();
+					show();
+				}
+			})
+			$("#numF").change(function(){
+//				changeTxt();
+					show();
+			})
+			function show(){
+				var txt = $("#txt").val();
+				var num = $("#numF").val();
+				console.log(num)
+				var trs=$("#tab").children(0).children().length;
+				var max=num*txt>trs?trs:num*txt;
+				$("#tab").children(0).children().eq(0).siblings().css({display:"none"});
+				for(var i=txt*(num-1)+1;i<=max;i++){
+					$("#tab").children(0).children().eq(i).css({display:"table-row"});
+				}
+			}
+			changeTxt();
+			show();
+			
+			/*$.ajax({
+				type:"post",
+				url:"/api/goods_list",
+				success : function(res){
+					console.log(res);
+				}
+			});*/
+//			alert($("#tab").children().children().length)
+		}
 /*		$.ajax({
 			type:"get",
 			url:"/goods_list",

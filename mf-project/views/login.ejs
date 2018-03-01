@@ -40,6 +40,12 @@
 			},
 			success : function(res){
 				console.log(res);
+				if(res.status == 1){
+					alert(res.message);
+					location.href = "/goods_add";
+				}else{
+					alert(res.message);
+				}
 			}
 		});
 	}

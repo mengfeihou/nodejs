@@ -25,6 +25,12 @@ router.get('/goods_list',function(req,res){
 })
 
 
+//商品列表 post ajax接收、
+router.post('/api/goods_list',function(req,res){
+	GoodModel.find({},function(err,docs){
+		res.send(docs);
+	})
+})
 
 
 
