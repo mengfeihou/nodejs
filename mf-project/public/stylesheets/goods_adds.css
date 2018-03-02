@@ -27,6 +27,7 @@ nav>ul>li{
 	padding:0 10px;
 	height:40px;
 	line-height:40px;
+	cursor:pointer;
 }
 nav .active{
 	background:#FFFFFF;
@@ -48,4 +49,34 @@ main form>div td:nth-child(odd){
 }
 main .button{
 	text-align: center;
+}
+main form>div{
+	display:none;
+}
+main form>div.activeDiv{
+	height:100%;
+	width:100%;
+	display:block;
+}
+main form>div:nth-child(2){
+	
+	background:#000000;
+}
+main form>div:nth-child(3){
+	background:#00B7FF;
+}
+main form>div:nth-child(4){
+	background:#303030;
+}
+main form>div:nth-child(5){
+	background:#3300CC;
+}
+main form>div:nth-child(6){
+	background:#EFEFEF;
+}
+main form>div:nth-child(7){
+	background:#FF0000;
+}
+main form>div:nth-child(8){
+	background:#FFFF00;
 }

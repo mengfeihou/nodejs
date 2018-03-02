@@ -9,7 +9,7 @@
 </head>
 <body>
 	<nav>
-		<ul>
+		<ul id="top">
 			<li class="active">通用信息</li>
 			<li>详细描述</li>
 			<li>其他信息</li>
@@ -22,7 +22,7 @@
 	</nav>
 	<main>
   		<form id="frm" action="/api/goods_adds" method="post" enctype="multipart/form-data">
-  			<div>
+  			<div  class="activeDiv">
   				<table>
 	  				<tr>
 	  					<td style="color: red">商品名称：</td>
@@ -94,6 +94,7 @@
 	  				</tr>
 	  			</table>
 	  		</div>
+	  		
 	  	</form>
 	  	<div class="button">
 		  	<input type="button" onclick="addGoods()" value="确定"/>
@@ -109,5 +110,13 @@
 			document.getElementById("frm").submit();
 //			location.href = "http://localhost:8080/goods_list";
 		}
+		$("#top").on("click","li",function(){
+//			alert($(this).index());
+			$(this).addClass("active").siblings().removeClass("active");
+			console.log($("#frm").children().eq($(this).index()).index())
+//			$("#frm").children().eq(0).addClass("activeDiv").siblings().removeClass("activeDiv")
+			$("#frm").children().eq($(this).index()).addClass("activeDiv")
+													.siblings().removeClass("activeDiv")
+		})
 	</script>
 </html>

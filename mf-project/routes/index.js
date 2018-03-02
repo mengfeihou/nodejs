@@ -40,6 +40,7 @@ router.post('/api/goods_list',function(req,res){
 
 
 //商品添加详细信息页面action提交 post
+
 router.post('/api/goods_adds',function(req,res){
 	var Form = new multiparty.Form({
 		uploadDir: "./public/imgs/add_imgs"

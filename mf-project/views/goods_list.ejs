@@ -66,7 +66,6 @@
 </body>
 	<script type="text/javascript">
 		function searchs(){
-//				alert();
 				$.ajax({
 					type:"post",
 					url:"/api/goods_list",
@@ -123,7 +122,7 @@
 			}
 		
 		
-		
+		//计算根据#txt中的数据计算需要分成几页
 		function changeTxt(){
 				var trs=$("#tab").children(0).children().length-1;
 				var txt = $("#txt").val();
@@ -136,6 +135,7 @@
 					numF.append(op);
 				}
 			}
+		//根据select #numF中的页码数显示本页所应该显示的数据个数
 		function show(){
 				var txt = $("#txt").val();
 				var num = $("#numF").val();
@@ -149,7 +149,10 @@
 			}
 			changeTxt();
 			show();
+			
+		
 		window.onload = function (){
+			//当#txt中的内容有修改的时候将changeTxt();show();再重新运行一遍
 			$("#foot").on("keydown",$("#txt"),function(ee){
 				var e = ee || event;
 				if(e.keyCode == 13){
@@ -157,6 +160,7 @@
 					show();
 				}
 			})
+			//当#numF中的内容有修改的时候将show();运行一遍
 			$("#numF").change(function(){
 //				changeTxt();
 					show();
