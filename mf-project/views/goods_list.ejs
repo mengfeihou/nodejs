@@ -33,7 +33,7 @@
 				<th>操作</th>
 			</tr>
 			<% for(var i=0; i <list.length;i++){ %>
-			<tr class="time">
+			<tr class="time" id="del('<%= list[i].id  %>')">
 				<td>
 					<input type="checkbox" />
 					<span><%= i %></span>
@@ -48,7 +48,10 @@
 				<td></td>
 				<td></td>
 				<td><%= list[i].count %></td>
-				<td></td>
+				<td>
+					<button class="del" onclick="del(this,'<%= list[i].id  %>')">删除</button>
+					<button class="change" onclick="changeUrl()">修改</button>
+				</td>
 			</tr>
 			<% } %>
 		</table>
@@ -56,7 +59,7 @@
 	<footer id="foot">
 		<!--<div class="txt"  id="txt" contenteditable="true">2</div> //div可编辑-->
 		<input class="txt" type="text"  id="txt" value="2"/>
-		<select class="num" id="numF">
+		<select class="num" id="numF"> 
 			<!--<option>1</option>-->
 		</select>
 	</footer>
@@ -64,7 +67,31 @@
 		<%= list.length %>
 	</div>-->
 </body>
+
+
 	<script type="text/javascript">
+		function changeUrl(){
+			alert()
+		}
+		function del(obj,list_id){
+//			alert(list_id);
+			var del_num = $(obj).parent().parent().index();
+			$.ajax({
+				type:"get",
+				url:"/goods_list/del",
+				data:{
+					list_id : list_id
+				},
+				success : function(res){
+					console.log(res);
+					$(".time").eq(del_num-1).remove()
+//					alert(del_num);
+					changeTxt();
+					show();
+				}
+			})
+		}
+		
 		function searchs(){
 				$.ajax({
 					type:"post",
@@ -78,7 +105,7 @@
 						console.log(res);
 						var tab = $("#tab").html("");
 						var list = res;
-						var temp = `<tr>
+						var temp = `<tr id="del(${ list[i].id } )" >
 										<th>
 											<input type="checkbox" />
 											<span>编号</span>
@@ -111,7 +138,9 @@
 								<td></td>
 								<td></td>
 								<td>${ list[i].count} </td>
-								<td></td>
+								<td>
+									<button class="del" onclick="del(${ list[i].id } )">删除</button>
+								</td>
 							</tr>`;
 						}
 						tab.html(temp);
@@ -127,20 +156,28 @@
 				var trs=$("#tab").children(0).children().length-1;
 				var txt = $("#txt").val();
 				var numF = $("#numF");
-				numF.html("");
+				var num = $("#numF").val();
+				var num = $("#numF").val()>=nums?1:$("#numF").val();
 				var nums = Math.ceil(trs/txt);
+//				alert(num);
+				numF.html("");
 				for(var i = 0 ; i < nums ;i++){
 					var op = $("<option>");
 					op.html(i+1);
 					numF.append(op);
+					if(i==num-1){
+						op.prop("selected","true");
+					}
 				}
 			}
 		//根据select #numF中的页码数显示本页所应该显示的数据个数
 		function show(){
 				var txt = $("#txt").val();
-				var num = $("#numF").val();
-				console.log(num)
 				var trs=$("#tab").children(0).children().length;
+				var nums = Math.ceil(trs/txt);
+				var num = $("#numF").val();
+//				var num = $("#numF").val()>=nums?1:$("#numF").val();
+//				console.log(num)
 				var max=num*txt>trs?trs:num*txt;
 				$("#tab").children(0).children().eq(0).siblings().css({display:"none"});
 				for(var i=txt*(num-1)+1;i<=max;i++){
@@ -163,6 +200,10 @@
 			//当#numF中的内容有修改的时候将show();运行一遍
 			$("#numF").change(function(){
 //				changeTxt();
+//					var numF = $("#numF").val();
+//					alert(numF);
+//					$("#numF").children().eq(numF-1).attr({"selected":"true"})
+//					                   ;
 					show();
 			})
 		}

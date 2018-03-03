@@ -24,6 +24,25 @@ router.get('/goods_list',function(req,res){
 	})
 })
 
+//商品列表页删除 get
+router.get('/goods_list/del',function(req,res){
+		var list_id = req.query.list_id;
+		GoodModel.findByIdAndRemove(list_id,function (err) {
+	  	var result = {
+				status:1,
+				message:"删除成功"
+			};
+			if(!err){
+				console.log("删除成功");
+				res.send(result)
+			}else{
+				console.log("删除失败");
+				result.status = -100;
+				result.message = "删除失败";
+				res.send(result);
+			}
+ 	  });
+})
 
 //商品列表 post ajax接收、
 router.post('/api/goods_list',function(req,res){
@@ -64,7 +83,9 @@ router.post('/api/goods_adds',function(req,res){
 		
 		gm.save(function(err){
 			if(!err){
-				res.send("商品保存成功");
+//				res.send("商品保存成功");
+//					res.render('goods_list',{});
+					res.render('skip');
 			}else{
 				res.send("商品保存失败");
 			}
@@ -77,11 +98,11 @@ router.post('/api/login',function(req,res){
 	var username = req.body.username;
 	var psw = req.body.psw;
 	
-	var result = {
-		status:1,
-		message:"登录成功"
-	}
 	UserModel.find({username:username,psw:psw},function(err,docs){
+		var result = {
+			status:1,
+			message:"登录成功"
+		}
 		if(!err && docs.length>0){
 			console.log("登录成功");
 			res.send(result)
