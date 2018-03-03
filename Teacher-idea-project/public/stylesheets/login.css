@@ -1,0 +1,69 @@
+html,body,ul,li,ol,dl,dd,dt,p,h1,h2,h3,h4,h5,h6,form,fieldset,legend,img,input{margin:0;padding:0;}
+ul,ol,li{list-style:none;}
+a,u{text-decoration:none;}
+b,strong{font-weight:100;}
+i,em{font-style:normal;}
+h1,h2,h3,h4,h5,h6{font-size:16px;font-weight:100;}
+img{display:block;border:0;}
+.clearfix:after{content:".";clear:both;display:block;height:0;overflow:hidden;visibility: hidden;}
+
+html,body{
+	height:100%;
+	overflow:hidden;
+}
+.box{
+	width:100%;
+	height:100%;
+	background:url(/imgs/login/login.png) no-repeat center center;
+	background-size:cover;
+}
+.box>h1{
+	position:absolute;
+	height:44px;
+    background: none;
+    padding: 40px 0 40px 50px;
+}
+section{
+	/*width:475px;
+	height:507px;
+	background:red;
+	margin:0 auto;*/
+	position: absolute;
+    top: 50%;
+    right: 0;
+    left: 0;
+    width: 475px;
+    margin: auto auto;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+section>h2>img{
+	width: 248px;
+    height: 65px;
+    margin-left: 66px;
+}
+section>.main{
+	width:470px;
+	margin-top:50px;
+	background:rgba(255,255,255,.85);
+}
+section>.main>form{
+	width:300px;
+	margin-left:66px;
+	display:flex;
+	flex-direction:column;	
+}
+section>.main>form>input{
+	display:flex;
+	width:100%;
+	height:50px;
+	border:0;
+	margin-bottom:5px;
+}
+section>.main>form>input:nth-child(3){
+	display: flex;
+	justify-content:center;
+}

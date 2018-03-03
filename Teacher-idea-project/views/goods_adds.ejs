@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8" />
+	<title>商品添加详细</title>
+	<script type="text/javascript" src="/js/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="/stylesheets/public.css" />
+	<link type="text/css" rel="stylesheet" href="/stylesheets/goods_adds.css" />
+</head>
+<body>
+	<nav>
+		<ul id="top">
+			<li class="active">通用信息</li>
+			<li>详细描述</li>
+			<li>其他信息</li>
+			<li>商品属性</li>
+			<li>商品相册</li>
+			<li>关联商品</li>
+			<li>配件</li>
+			<li>关联文章</li>
+		</ul>
+	</nav>
+	<main>
+  		<form id="frm" action="/api/goods_adds" method="post" enctype="multipart/form-data">
+  			<div  class="activeDiv">
+  				<table>
+	  				<tr>
+	  					<td style="color: red">商品名称：</td>
+	  					<td><input type="text" name="goods_name"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td style="color: red">商品货号：</td>
+	  					<td><input type="text" name="goods_number"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>商品分类：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>扩展分类：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>商品品牌：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td style="color: red">本店售价：</td>
+	  					<td><input type="text" name="price"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>会员价格：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>商品优惠价格：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>市场售价：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td style="color: red">虚拟销量：</td>
+	  					<td><input type="text" name="count"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>>赠送消费积分数：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>赠送等级积分数：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>积分购买金额：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>促销价：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>>赠促销日期：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td  style="color: red">上传商品图片：</td>
+	  					<td><input type="file" name="img"/></td>
+	  				</tr>
+	  				<tr>
+	  					<td>上传商品缩略图：</td>
+	  					<td><input type="text"/></td>
+	  				</tr>
+	  			</table>
+	  		</div>
+	  		
+	  	</form>
+	  	<div class="button">
+		  	<input type="button" onclick="addGoods()" value="确定"/>
+		  	<input type="reset" value="重置"/>
+	  	</div>
+  	</main>
+	
+	
+
+</body>
+	<script type="text/javascript">
+		function addGoods(){
+		/*	setTimeout(function(){
+				location.href = "http://localhost:8080/goods_list";
+//				alert()
+			},300)*/
+			document.getElementById("frm").submit();
+//			location.href = "http://localhost:8080/goods_list";
+		}
+		$("#top").on("click","li",function(){
+//			alert($(this).index());
+			$(this).addClass("active").siblings().removeClass("active");
+			console.log($("#frm").children().eq($(this).index()).index())
+//			$("#frm").children().eq(0).addClass("activeDiv").siblings().removeClass("activeDiv")
+			$("#frm").children().eq($(this).index()).addClass("activeDiv")
+													.siblings().removeClass("activeDiv")
+		})
+	</script>
+</html>
