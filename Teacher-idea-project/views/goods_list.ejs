@@ -36,21 +36,21 @@
 			</tr>
 			
 			<% for(var i=0; i <list.length ;i++){ %>
-			<tr class="time" id="del('<%= list[i].id  %>')">
+			<tr class="time" id='<%= list[i].id  %>'>
 				<td>
 					<input type="checkbox" />
 					<span><%= i %></span>
 				</td>
-				<td><%= list[i].goods_name %></td>
-				<td><%= list[i].goods_number %></td>
-				<td><%= list[i].price %></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td></td>
-				<td><%= list[i].count %></td>
+				<td><b><%= list[i].goods_name %></b></td>
+				<td><b><%= list[i].goods_number %></b></td>
+				<td><b><%= list[i].price %></b></td>
+				<td><b></b></td>
+				<td><b></b></td>
+				<td><b></b></td>
+				<td><b></b></td>
+				<td><b></b></td>
+				<td><b></b></td>
+				<td><b><%= list[i].count %></b></td>
 				<td>
 					<button class="del" onclick="del('<%= list[i]._id  %>')">删除</button>
 					<button class="change" onclick="changeUrl()">修改</button>
@@ -80,15 +80,59 @@
 
 <script type="text/javascript">
 	
-	$("#tab").on("click","td",function(){
-//		alert($(this).html());
+	$("#tab").on("click","b",function(){
+		var _id = $(this).parent().parent().attr("id");
+		var trId = "#"+_id;
+		console.log(trId);
+		
+		
 		var ins = $("<input type='text' />");
-		ins.attr("value",$(this).html());
+		var bTxt = $(this).html();
+		ins.attr("value",bTxt);
 		$(this).html("") ;
-		$(this).append(ins);
+		$(this).parent().html(ins);
+		ins.focus();
 		
-//		alert($(this).html());
-		
+		ins.on("blur",function(){
+			var insVal = ins.val();
+			var b = $("<b></b>");
+			if(insVal == ""){
+				b.html(bTxt);
+				$(this).parent().html(b);
+				return;
+			}else{
+				b.html(insVal);
+				$(this).parent().html(b);
+			}
+			
+			
+			var goods_name = $(trId).children().eq(1).children().html();
+			var goods_number = $(trId).children().eq(2).children().html();
+			var price = $(trId).children().eq(3).children().html();
+			var count = $(trId).children().eq(10).children().html();
+			console.log(goods_name,goods_number,price,count);
+			$.ajax({
+				type:"post",
+				url:"/goods_list/update",
+				data:{
+					_id :_id,
+					goods_name:goods_name,
+					goods_number:goods_number,
+					price:price,
+					count:count
+				},
+				success:function(res){
+					console.log(res)
+					if(res.status == 1){
+						console.log(res.message);
+						location.reload();
+					}else{
+						alert(res.message);
+						console.log(res.message);
+					}
+				}
+			});
+		})
 	})
 	
 	//ajax删除数据

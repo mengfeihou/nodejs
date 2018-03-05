@@ -38,6 +38,40 @@ router.get('/goods_list',function(req,res){
 	});
 })
 
+
+//商品列表页更新一条数据
+router.post('/goods_list/update',function(req,res){
+		var _id = req.body._id;
+		var goods_name = req.body.goods_name;
+		var goods_number = req.body.goods_number;
+		var price = req.body.price;
+		var count = req.body.count;
+		/*_id : _id,
+		goods_name:goods_name,
+		goods_number:goods_number,
+		price:price,
+		count:count*/
+		console.log(_id);
+		GoodModel.update({_id:_id},{$set:{goods_name:goods_name,
+																			goods_number:goods_number,
+																			price:price,
+																			count:count}},function (err) {
+	  	var result = {
+				status:1,
+				message:"修改成功"
+			};
+			if(!err){
+				console.log("修改成功");
+				res.send(result)
+			}else{
+				console.log("修改失败");
+				result.status = -111;
+				result.message = "修改失败";
+				res.send(result);
+			}
+ 	  });
+})
+
 //商品列表页删除 get
 router.get('/goods_list/del',function(req,res){
 		var list_id = req.query.list_id;
